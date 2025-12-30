@@ -1,0 +1,31 @@
+_pkgname=sr-cdromplaytrkind
+_target_kernel=6.18.2
+pkgname=${_pkgname}-git
+pkgver=0.1_${target_kernel}
+pkgrel=1
+pkgdesc="Restores analog CD playback functionality using the CDROMPLAYTRKIND command on ATAPI drives."
+arch=('x86_64')
+url="https://gitlab.com/Reaperkun788/sr-cdromplaytrkind-dkms"
+license=('GPL-2.0-only')
+depends=('dkms')
+makedepends=('git')
+provides=("${_pkgname}")
+conflicts=("${_pkgname}")
+source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${target_kernel}.tar.xz")
+sha256sums=('SKIP')
+
+prepare() {
+    ls
+    exit 1
+}
+
+package() {
+    cd i2c-nct6793-dkms
+
+    cp debian/dkms dkms.conf
+
+    install -D dkms.conf            ${pkgdir}/usr/src/i2c-nct6793-dkms-0.1/dkms.conf
+    install -D src/Makefile         ${pkgdir}/usr/src/i2c-nct6793-dkms-0.1/Makefile
+    install -D src/i2c-nct6793.c    ${pkgdir}/usr/src/i2c-nct6793-dkms-0.1/i2c-nct6793.c
+    install -D src/i2c-nct6793.conf ${pkgdir}/etc/modules-load.d/i2c-nct6793.conf
+}

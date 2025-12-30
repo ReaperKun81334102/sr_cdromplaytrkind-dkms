@@ -1,0 +1,20 @@
+--- "/home/rinukun7/ダウンロード/linux-6.18.2 (2)/drivers/scsi/sr_ioctl.c"	2025-12-18 22:03:43.000000000 +0900
++++ /home/rinukun7/sr-cdromplaytrkind-dkms/src/sr_ioctl.c	2025-12-29 17:07:52.598426538 +0900
+@@ -174,9 +174,9 @@
+ 	cgc.cmd[8] = ti->cdti_ind1;
+ 	cgc.data_direction = DMA_NONE;
+ 
+-	result = sr_do_ioctl(cd, &cgc);
+-	if (result == -EDRIVE_CANT_DO_THIS)
+-		result = sr_fake_playtrkind(cdi, ti);
++        result = sr_do_ioctl(cd, &cgc);
++        if (result == -EDRIVE_CANT_DO_THIS || result == -EOPNOTSUPP)
++            result = sr_fake_playtrkind(cdi, ti);
+ 
+ 	return result;
+ }
+@@ -598,3 +598,4 @@
+ #endif
+ 	return is_xa;
+ }
++
