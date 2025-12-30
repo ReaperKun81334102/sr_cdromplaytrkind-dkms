@@ -12,7 +12,7 @@ makedepends=('git')
 provides=("${_pkgname}")
 conflicts=("${_pkgname}")
 source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${target_kernel}.tar.xz")
-sha256sums=('SKIP')
+sha256sums=('558c6bbab749492b34f99827fe807b0039a744693c21d3a7e03b3a48edaab96a')
 
 prepare() {
     ls
