@@ -1,7 +1,7 @@
 _pkgname=sr-cdromplaytrkind
 _target_kernel=6.18.2
 pkgname=${_pkgname}-git
-pkgver=0.1_${target_kernel}
+pkgver=0.1_${_target_kernel}
 pkgrel=1
 pkgdesc="Restores analog CD playback functionality using the CDROMPLAYTRKIND command on ATAPI drives."
 arch=('x86_64')
@@ -11,7 +11,7 @@ depends=('dkms')
 makedepends=('git')
 provides=("${_pkgname}")
 conflicts=("${_pkgname}")
-source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${target_kernel}.tar.xz")
+source=("https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${_target_kernel}.tar.xz")
 sha256sums=('558c6bbab749492b34f99827fe807b0039a744693c21d3a7e03b3a48edaab96a')
 
 prepare() {
